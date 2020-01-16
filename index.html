@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<style type='text/CSS'>
+html, body, ul{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 17px;;
+    font-family: Helvetica Neue;
+    vertical-align: baseline;
+    height: 100%;
+    
+}
+
+a{
+    text-decoration: none;
+    color: dimgray;
+}
+
+#container {
+        width: 100%;   
+        height: 100%;
+        }
+        
+#sidebar {
+/*        width: 25%;*/
+        height: 100%;
+        width: 300px;
+        display: inline-block;
+        background-color: #f8f9fa;
+        border-right: 1px solid rgba(0,0,0,.125);
+        box-sizing: border-box;
+        
+        }
+        
+#content {
+    display: inline-block;
+    float: right;
+    margin: auto;
+    left: 300px;
+    position:absolute;
+    vertical-align: top;
+    background:white;
+    height: 100%;
+    transition: 0.5s;
+        }
+        
+        
+#content h1 {
+	margin: 20px auto 20px auto;
+    width: 90%;
+}
+#content p {
+	margin: 20px auto 20px auto;
+	width: 90%;
+}
+        
+        
+nav ul li {
+  position:relative;
+  list-style:none;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.125);
+  border-width: 0px 0px 1px 0px;
+  font-size: 1rem;
+  padding: 20px;
+}
+        
+        
+nav ul li p{
+    padding: 0px 10px;
+    text-decoration: none;
+    color: grey;
+
+}
+
+nav ul li:hover{
+    background-color: #dae0e5 !important
+}
+        
+nav > ul > li:first-child > a:hover, ul > li:first-child > a:focus {
+    color:#333;
+    background: none;
+    text-decoration:underline
+}
+        
+
+    
+.highlight{
+    color: deeppink;
+}
+  
+.header{
+        background-color:lightblue;
+        padding: 20px 20px;
+        display: block;
+        text-align: right;
+    }
+
+
+.navbar {
+     background: #f8f9fa; 
+    border: 1px solid rgba(0,0,0,.125);
+    border-width: 0px 0px 1px 0px;
+    margin: 0px;
+}
+        
+.navbar-menu{
+        display:inline-flex;
+        float:right;
+        flex-direction: row;
+        justify-content:flex-end;
+        list-style: none;
+        padding: 20px 30px;
+        }
+        
+.nav-item{
+    padding: 0px 10px;
+    color: grey;
+}
+        
+.active > a {
+    color:black !important;
+}
+        
+.navbar-button {
+    background-color:royalblue;
+    padding:10px;
+    color:white;
+    margin: 10px;
+    font-size: 1em;
+    border: none;
+    border-radius: 4px;
+}
+        
+#navbar-dropdown{
+    border: 1px solid rgba(0,0,0,.125);
+    background-color: white !important;
+    padding: 0px 20px;
+    display:none;
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    border-radius: 5px;
+}
+        
+#navbar-dropdown ul {
+list-style: none;
+}
+        
+#navbar-dropdown ul li{
+border: 1px solid rgba(0,0,0,.125);
+  border-width: 0px 0px 1px 0px;
+  font-size: 1rem;
+  padding: 10px;
+}
+   
+        
+</style>
+</head>
+<body>
+    <div id='container'>
+        <div id='sidebar'>
+            <nav>
+                <ul>
+                    <li onclick="dashboardReload()"><span>Start Bootstrap</span>
+                    </li>
+                    <li><a href="#">Dashboard</a>
+                    </li>
+                    <li><a href="#">Shortcuts</a>
+                    </li>
+                    <li><a href="#">Overview</a>
+                    </li>
+                    <li><a href="#">Events</a>
+                    </li>
+                     <li><a href="#">Profile</a>
+                    </li>
+                     <li><a href="#">Status</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+        <div id='content'>   
+              <div class="navbar" aria-labelledby="navbarDropdown">
+                  <button class='navbar-button' onclick="toggleSidebar()">Toggle menu</button>
+                 <ul class="navbar-menu">
+                    <li class="nav-item active">
+<!--                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria- expanded="false" onClick="toggleDropdown()">
+                            Dropdown &#9662;
+                        </a>
+                    </li>
+                  </ul>  
+                  <div id='navbar-dropdown' >
+                        <ul>
+                            <li>
+                            Action
+                            </li>
+                             <li>
+                            Another Action
+                            </li>
+                             <li>
+                            Something else here
+                            </li>
+                        </ul> 
+                     </div>
+                     
+              </div>
+               
+            <h1>Simple Sidebar</h1>
+            <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
+            <p>Make sure to keep all page content within the <span class='highlight'>#page-content-wrapper</span>. The top navbar is optional, and just for demonstration. Just create an element with the <span class='highlight'>#menu-toggle</span> ID which will toggle the menu when clicked.</p>
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+    
+    function toggleSidebar() {
+        let sidebar =  document.getElementById("sidebar"); 
+        let content = document.getElementById("content"); 
+        if(content.style.left=='300px'){
+            content.style.left='0px';
+        }
+        else {
+            content.style.left='300px';
+        }
+    }
+    
+    function toggleDropdown(){
+        let dropdown =  document.getElementById("navbar-dropdown");
+        if(dropdown.style.display=='inline-block'){
+            dropdown.style.display='none'
+        }
+        else {
+           dropdown.style.display='inline-block'
+        }
+    }
+    
+    function dashboardReload(){
+        window.location.reload()
+    }
+	    
+</script>
+
+</body>
